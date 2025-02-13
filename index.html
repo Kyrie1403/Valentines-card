@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Open the Envelope</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ffc0cb; /* Pink background */
+            font-family: Arial, sans-serif; /* Readable font */
+            text-align: center;
+            margin: 0;
+        }
+        h1 {
+            color: #ff3366;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        h1:before, h1:after {
+            content: "❤️";
+            position: absolute;
+            top: 0;
+        }
+        h1:before {
+            left: -30px;
+        }
+        h1:after {
+            right: -30px;
+        }
+        .envelope-wrapper {
+            position: relative;
+            width: 1100px; /* Adjusted width */
+            height: 500px; /* Adjusted height */
+            overflow: hidden; /* Hide overflow by default */
+            background-color: #ffb6c1; /* Baby pink background */
+            border: 2px solid #000;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: height 1s ease-in-out;
+            margin: 0 auto;
+        }
+        .envelope-wrapper.open {
+            height: 1298px; /* Height to match the content */
+        }
+        .envelope {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        .flap, .top-flap {
+            transition: opacity 1s ease-in-out;
+        }
+        .flap {
+            position: absolute;
+            top: -250px; /* Adjusted to match the envelope height */
+            left: 0;
+            width: 0;
+            height: 0;
+            border-left: 550px solid transparent;
+            border-right: 550px solid transparent;
+            border-bottom: 250px solid #ff8da1; /* Darker shade of pink for the flap */
+            transform-origin: bottom;
+            opacity: 1;
+        }
+        .envelope-wrapper.open .flap,
+        .envelope-wrapper.open .top-flap {
+            opacity: 0; /* Hide the flaps when the envelope is opened */
+        }
+        .top-flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 1100px;
+            height: 250px;
+            background-color: #ff9cb2; /* Slightly darker shade of pink for the top flap */
+            opacity: 1;
+        }
+        .content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 1100px; /* Width to match the envelope */
+            height: 1298px; /* Height to match the envelope */
+            background-color: rgba(255, 255, 255, 0.9); /* Higher opacity for the background color */
+            border: 2px solid #000;
+            padding: 40px; /* Adjusted padding for text */
+            box-sizing: border-box;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transition: opacity 1s ease-in-out 1s;
+            background-image: url('1.jpg'); /* Background image */
+            background-size: cover;
+            background-position: center; /* Center the background image */
+            background-blend-mode: lighten; /* Blend mode to make the image lighter */
+        }
+        .envelope-wrapper.open .content {
+            opacity: 1;
+            overflow: visible;
+        }
+        .content p {
+            margin: 0 0 1em 0;
+            word-wrap: break-word;
+            font-size: 1.2em; /* Increased font size for readability */
+            line-height: 1.5em; /* Added line height for better readability */
+            color: rgba(0, 0, 0, 0.9); /* Nearly opaque font color for better contrast */
+            text-align: left; /* Align text to the left */
+        }
+        .signature {
+            margin-top: 2em; /* Add some space before the signature */
+            font-size: 1.2em; /* Same font size as the letter */
+        }
+        .hearts {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2em;
+            color: #ff3366;
+            opacity: 0;
+            animation: floatHearts 2s ease-in-out forwards;
+        }
+        .envelope-wrapper.open .hearts {
+            animation: floatHearts 2s ease-in-out forwards;
+        }
+        @keyframes floatHearts {
+            0% {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(-50%, -150%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Happy Valentine's Day, my love ❤️</h1>
+    <div class="envelope-wrapper" onclick="openEnvelope()">
+        <div class="envelope">
+            <div class="flap"></div>
+            <div class="top-flap"></div>
+            <div class="content">
+                <p>My Ely,</p>
+                <p>This letter may not be enough to hold the depth of what I feel for you, but I need you to know that I love you, in ways words will never fully capture.</p>
+                <p>We have fought, stumbled, and weathered storms even before we had the chance to begin. The weight of misunderstandings, the sting of unspoken words, and the moments we tested each other’s patience could have torn us apart. And yet, you stayed. You chose to endure, to believe in what we could be, despite the chaos, despite me.</p>
+                <p>For that, I am endlessly grateful.</p>
+                <p>You are not just a passing presence in my life. You are the quiet strength in my moments of doubt, the warmth that lingers even when everything else feels cold. You have seen me at my worst, yet you remain unwavering, forgiving, and patient beyond measure. I do not take that for granted.</p>
+                <p>I love you, not just in fleeting whispers but in the way my heart recognizes yours as home. I love you in the way my soul leans toward you, as if it has known you long before this lifetime. And though we have yet to name what we are, know that I am yours, in devotion, in honesty, in all that I am.</p>
+                <p>No matter how difficult the road may be, I will choose you. Every time.</p>
+                <p class="signature">Yours always,<br>Kyrie</p>
+            </div>
+        </div>
+    </div>
+
+    <audio id="background-music" src="2.mp3" loop></audio>
+
+    <script>
+        document.body.addEventListener('click', function() {
+            const audio = document.getElementById('background-music');
+            audio.volume = 0.2; // Set the volume to 20%
+            audio.play();
+        });
+
+        function openEnvelope() {
+            const envelopeWrapper = document.querySelector('.envelope-wrapper');
+            envelopeWrapper.classList.toggle('open');
+        }
+    </script>
+</body>
+</html>
